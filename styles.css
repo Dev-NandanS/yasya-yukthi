@@ -10,24 +10,27 @@ body {
     overflow: hidden;
     background: #0A0A1A;
     height: 100vh;
+    width: 100vw;
 }
 
-/* Header Styles */
+/* Header */
 header {
     position: fixed;
     width: 100%;
     text-align: center;
     padding: 2rem;
     z-index: 100;
-    color: white;
-    transition: color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    mix-blend-mode: difference; /* This will handle the color swap */
+    color: #fff;
+    transition: color 0.5s ease;
+    background: transparent;
 }
 
 header h1 {
     font-size: 0.875rem;
     font-weight: 400;
     letter-spacing: 0.2em;
+    color: inherit;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 header p {
@@ -35,14 +38,17 @@ header p {
     letter-spacing: 0.15em;
     margin-top: 0.25rem;
     opacity: 0.8;
+    color: inherit;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Split Container */
+/* Container */
 .split-container {
     display: flex;
     width: 100vw;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
 /* Split Panels */
@@ -52,14 +58,16 @@ header p {
     height: 100%;
     transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    flex-shrink: 0;
 }
 
-/* Image Container */
+/* Images */
 .image-container {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .background-image {
@@ -67,35 +75,67 @@ header p {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: 0.7;
+    opacity: 0.9;
     transition: transform 0.7s ease-in-out;
+    transform: scale(1.01);
 }
 
-/* Left Panel (YASYA) */
+/* Sections */
 .left {
     background: #0A0A1A;
+    color: white;
+}
+
+.right {
+    background: white;
+    color: black;
 }
 
 .left .image-container::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(10,10,26,0.95), rgba(10,10,26,0.5));
-}
-
-/* Right Panel (YUKTHI) */
-.right {
-    background: white;
+    background: linear-gradient(
+        to right,
+        rgba(10, 10, 26, 0.95),
+        rgba(10, 10, 26, 0.3) 80%,
+        transparent
+    );
 }
 
 .right .image-container::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0.5));
+    background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.3) 80%,
+        transparent
+    );
 }
 
-/* Content Styles */
+/* Gradient Separator */
+.gradient-separator {
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 150px;
+    transform: translateX(-50%) rotate(3deg);
+    z-index: 10;
+    background: linear-gradient(
+        to right,
+        rgba(10, 10, 26, 0.95) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.95) 100%
+    );
+    filter: blur(8px);
+    opacity: 0.8;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    mix-blend-mode: overlay;
+}
+
+/* Content */
 .content {
     position: relative;
     height: 100%;
@@ -106,19 +146,12 @@ header p {
     z-index: 2;
 }
 
-.left .content {
-    color: white;
-}
-
-.right .content {
-    color: black;
-}
-
 h2 {
     font-size: 5rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     margin-bottom: 2rem;
+    line-height: 1;
 }
 
 .description {
@@ -129,19 +162,7 @@ h2 {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 2.5rem;
-    opacity: 0.9;
-}
-
-/* Separator */
-.separator {
-    position: absolute;
-    left: 50%;
-    height: 100%;
-    width: 1px;
-    background: rgba(128, 128, 128, 0.2);
-    transform: translateX(-50%) rotate(3deg);
-    z-index: 10;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
 }
 
 /* Visit Button */
@@ -155,24 +176,19 @@ h2 {
     font-size: 0.875rem;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all 0.3s ease;
     color: inherit;
+    transition: all 0.3s ease;
 }
 
-/* Hover States */
-.split:hover {
-    width: 60%;
+.arrow {
+    transition: transform 0.3s ease;
 }
 
-.split:not(:hover) {
-    width: 40%;
+.visit-btn:hover .arrow {
+    transform: translateX(5px);
 }
 
-.split:hover .background-image {
-    transform: scale(1.05);
-}
-
-/* Dots Menu */
+/* Dots */
 .dots {
     position: absolute;
     right: 2rem;
@@ -192,15 +208,39 @@ h2 {
     border-radius: 50%;
 }
 
-.left .dots {
-    color: white;
+/* Hover States */
+.split:hover {
+    width: 60%;
 }
 
-.right .dots {
-    color: black;
+.split:not(:hover) {
+    width: 40%;
 }
 
-/* Responsive Design */
+.split:hover .background-image {
+    transform: scale(1.05);
+}
+
+.split.left:hover ~ .gradient-separator {
+    transform: translateX(-40%) rotate(3deg);
+    opacity: 0.9;
+}
+
+.split.right:hover ~ .gradient-separator {
+    transform: translateX(-60%) rotate(3deg);
+    opacity: 0.9;
+}
+
+.right:hover ~ header {
+    color: #000;
+}
+
+.right:hover ~ header h1,
+.right:hover ~ header p {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Media Queries */
 @media (max-width: 1024px) {
     h2 {
         font-size: 4rem;
@@ -218,10 +258,13 @@ h2 {
         width: 100%;
         height: 50vh;
     }
-    .separator {
+    .gradient-separator {
         display: none;
     }
     h2 {
         font-size: 3rem;
+    }
+    .dots {
+        display: none;
     }
 }

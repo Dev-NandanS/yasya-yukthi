@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const leftPanel = document.querySelector('.split.left');
     const rightPanel = document.querySelector('.split.right');
-    const separator = document.querySelector('.separator');
+    const separator = document.querySelector('.gradient-separator');
     const header = document.querySelector('header');
     const buttons = document.querySelectorAll('.visit-btn');
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             inactivePanel.style.width = '40%';
 
             // Update header color
-            header.style.color = isLeft ? 'white' : 'black';
+            header.style.color = isLeft ? '#fff' : '#000';
 
             // Show description with animation
             const description = activePanel.querySelector('.description');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Move separator
             if (separator) {
-                separator.style.transform = `translateX(${isLeft ? '-40%' : '-60%'})`;
+                separator.style.transform = `translateX(${isLeft ? '-40%' : '-60%'}) rotate(3deg)`;
             }
         } else {
             // Reset only if neither panel is hovered
@@ -39,17 +39,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 leftPanel.style.width = '50%';
                 rightPanel.style.width = '50%';
 
-                // Reset header color to default white
-                header.style.color = 'white';
+                // Reset header color
+                header.style.color = '#fff';
 
                 // Reset separator
                 if (separator) {
-                    separator.style.transform = 'translateX(-50%)';
+                    separator.style.transform = 'translateX(-50%) rotate(3deg)';
                 }
 
                 // Reset background images
                 document.querySelectorAll('.background-image').forEach(img => {
-                    img.style.transform = 'scale(1)';
+                    img.style.transform = 'scale(1.01)';
                 });
             }
         }
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Reset styles for mobile
                 leftPanel.style.width = '100%';
                 rightPanel.style.width = '100%';
-                header.style.color = 'white';
+                header.style.color = '#fff';
                 if (separator) {
                     separator.style.display = 'none';
                 }
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 rightPanel.style.width = '50%';
                 if (separator) {
                     separator.style.display = 'block';
-                    separator.style.transform = 'translateX(-50%)';
+                    separator.style.transform = 'translateX(-50%) rotate(3deg)';
                 }
             }
         }, 250);
