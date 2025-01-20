@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,67 +6,91 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #0A0A0A;
+    color: white;
     overflow: hidden;
-    background: #0A0A1A;
-    height: 100vh;
-    width: 100vw;
 }
 
-/* Header */
-header {
+/* Header Styles */
+.header {
     position: fixed;
     width: 100%;
+    top: 0;
+    z-index: 50;
     text-align: center;
-    padding: 2rem;
-    z-index: 100;
-    color: #fff;
-    transition: color 0.5s ease;
-    background: transparent;
+    padding: 1.5rem 0;
 }
 
-header h1 {
-    font-size: 0.875rem;
-    font-weight: 400;
+.header h1 {
+    font-size: 1rem;
     letter-spacing: 0.2em;
-    color: inherit;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-weight: 300;
 }
 
-header p {
+.header p {
     font-size: 0.75rem;
     letter-spacing: 0.15em;
     margin-top: 0.25rem;
     opacity: 0.8;
-    color: inherit;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Container */
-.split-container {
+/* Main Content Styles */
+.main-content {
     display: flex;
-    width: 100vw;
     height: 100vh;
-    position: relative;
+    width: 100%;
     overflow: hidden;
 }
 
-/* Split Panels */
-.split {
-    position: relative;
-    width: 50%;
+/* Sections Wrapper */
+.sections-container {
+    display: flex;
     height: 100%;
-    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-    flex-shrink: 0;
+    width: 100%;
 }
 
-/* Images */
-.image-container {
+/* Section Styles */
+.section {
+    position: relative;
+    height: 100%;
+    flex-shrink: 0;
+    transition: flex 1s ease, transform 1s ease-in-out; /* Slow down the transition */
+}
+
+/* Default Widths */
+.yasya-section,
+.yukthi-section {
+    flex: 1; /* Take up equal space by default */
+    transition: flex 1s ease, transform 1s ease-in-out; /* Slowed down transition */
+}
+
+/* Hovering Effects */
+.yasya-section:hover {
+    flex: 2; /* YASYA section expands */
+    transition: flex 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.yukthi-section:hover {
+    flex: 2; /* YUKTHI section expands */
+    transition: flex 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Shrinking the non-hovered section */
+.yasya-section:not(:hover) {
+    flex: 1; /* YASYA section shrinks */
+    transition: flex 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.yukthi-section:not(:hover) {
+    flex: 1; /* YUKTHI section shrinks */
+    transition: flex 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Background Styles */
+.background-wrapper {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
     overflow: hidden;
 }
 
@@ -74,197 +98,121 @@ header p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    opacity: 0.9;
-    transition: transform 0.7s ease-in-out;
-    transform: scale(1.01);
+    opacity: 0.6;
 }
 
-/* Sections */
-.left {
-    background: #0A0A1A;
-    color: white;
-}
-
-.right {
-    background: white;
-    color: black;
-}
-
-.left .image-container::after {
-    content: '';
+.gradient-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(10, 10, 26, 0.95),
-        rgba(10, 10, 26, 0.3) 80%,
-        transparent
-    );
 }
 
-.right .image-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to left,
-        rgba(255, 255, 255, 0.95),
-        rgba(255, 255, 255, 0.3) 80%,
-        transparent
-    );
+.yukthi-gradient {
+    background: linear-gradient(to right, #0A0A0A, transparent);
 }
 
-/* Gradient Separator */
-.gradient-separator {
-    position: absolute;
-    left: 50%;
-    height: 100%;
-    width: 150px;
-    transform: translateX(-50%) rotate(3deg);
-    z-index: 10;
-    background: linear-gradient(
-        to right,
-        rgba(10, 10, 26, 0.95) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0.95) 100%
-    );
-    filter: blur(8px);
-    opacity: 0.8;
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    mix-blend-mode: overlay;
+.yasya-gradient {
+    background: linear-gradient(to left, #0A0A0A, transparent);
 }
 
-/* Content */
+/* Content Styles */
 .content {
     position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 4rem;
-    z-index: 2;
+    padding: 0 3rem;
+    opacity: 0.8;
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-h2 {
-    font-size: 5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+.section:hover .content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content h2 {
+    font-size: 3.75rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
     margin-bottom: 2rem;
-    line-height: 1;
 }
 
 .description {
     max-width: 32rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.section:hover .description {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .description p {
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1.6;
-    margin-bottom: 2.5rem;
-    opacity: 0.8;
+    margin-bottom: 2rem;
 }
 
-/* Visit Button */
+/* Button Styles */
 .visit-btn {
-    display: inline-flex;
+    background-color: white;
+    color: black;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.25rem;
+    display: flex;
     align-items: center;
     gap: 0.75rem;
-    background: none;
-    border: 1px solid currentColor;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    letter-spacing: 0.1em;
     cursor: pointer;
-    color: inherit;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-.arrow {
+.visit-btn:hover {
+    background-color: #e5e5e5;
+}
+
+.visit-btn .arrow {
     transition: transform 0.3s ease;
 }
 
 .visit-btn:hover .arrow {
-    transform: translateX(5px);
+    transform: translateX(0.25rem);
 }
 
-/* Dots */
-.dots {
+/* Decorative Elements */
+.decorative-plus {
     position: absolute;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.top-right {
+    top: 2rem;
     right: 2rem;
+}
+
+.bottom-left {
+    bottom: 2rem;
+    left: 2rem;
+}
+
+/* Navigation Dots */
+.nav-dots {
+    position: fixed;
     top: 50%;
+    right: 2rem;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    z-index: 3;
 }
 
 .dot {
-    width: 3px;
-    height: 3px;
-    background: currentColor;
-    opacity: 0.3;
+    width: 0.375rem;
+    height: 0.375rem;
+    background-color: #666;
     border-radius: 50%;
-}
-
-/* Hover States */
-.split:hover {
-    width: 60%;
-}
-
-.split:not(:hover) {
-    width: 40%;
-}
-
-.split:hover .background-image {
-    transform: scale(1.05);
-}
-
-.split.left:hover ~ .gradient-separator {
-    transform: translateX(-40%) rotate(3deg);
-    opacity: 0.9;
-}
-
-.split.right:hover ~ .gradient-separator {
-    transform: translateX(-60%) rotate(3deg);
-    opacity: 0.9;
-}
-
-.right:hover ~ header {
-    color: #000;
-}
-
-.right:hover ~ header h1,
-.right:hover ~ header p {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Media Queries */
-@media (max-width: 1024px) {
-    h2 {
-        font-size: 4rem;
-    }
-    .content {
-        padding: 0 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .split-container {
-        flex-direction: column;
-    }
-    .split {
-        width: 100%;
-        height: 50vh;
-    }
-    .gradient-separator {
-        display: none;
-    }
-    h2 {
-        font-size: 3rem;
-    }
-    .dots {
-        display: none;
-    }
 }
