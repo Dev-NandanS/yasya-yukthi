@@ -1,12 +1,12 @@
 /* Base Styles */
-@font-face {
+/*@font-face {
     font-family: 'changeling-neo';
     src: url("fonts/Changeling Neo Bold.otf") format("opentype"),
          url("fonts/Changeling Neo Inline.otf") format("opentype"),
          url("fonts/Changeling Neo Light.otf") format("opentype"),
          url("fonts/Changeling Neo Regular.otf") format("opentype"),
          url("fonts/Changeling Neo Stencil.otf") format("opentype");
-}
+}*/
 
 * {
     margin: 0;
@@ -22,12 +22,12 @@ body {
 
 /* Header Styles */
 .header {
-    font-family: 'Changeling Neo Regular';
+    font-family: "Changeling Neo";
     color: #FFF;
     text-align: center;
     font-size: 23.206px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: regular;
     line-height: normal;
     position: fixed;
     width: 100%;
@@ -37,19 +37,25 @@ body {
 }
 
 #presentstag {
-    font-family: 'Changeling Neo Light';
+    font-family: "Changeling Neo";
     font-size: 17.443;
     letter-spacing: 0.2em;
     font-weight: 300;
 }
 
-#Yasya_content {
-    font-family: 'Changeling Neo Bold'; /* Add the font-face declaration here */
-    font-size: 106.67px;
+#yasyaheader{
+    font-family: "Changeling Neo";
+    font-size: 60px;
+    font-weight: bold;
     letter-spacing: 0.2em;
-    font-weight: 300;
 }
 
+#yukthiheader{
+    font-family: "Changeling Neo";
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+}
 
 .header h1 {
     font-size: 1rem;
@@ -168,6 +174,12 @@ body {
 }
 
 .description {
+    font-family: 'Coolvetica';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    letter-spacing: 1px;
     max-width: 32rem;
     opacity: 0;
     transform: translateY(1rem);
