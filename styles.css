@@ -1,4 +1,13 @@
 /* Base Styles */
+@font-face {
+    font-family: 'changeling-neo';
+    src: url("fonts/Changeling Neo Bold.otf") format("opentype"),
+         url("fonts/Changeling Neo Inline.otf") format("opentype"),
+         url("fonts/Changeling Neo Light.otf") format("opentype"),
+         url("fonts/Changeling Neo Regular.otf") format("opentype"),
+         url("fonts/Changeling Neo Stencil.otf") format("opentype");
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +15,6 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #0A0A0A;
     color: rgb(255, 255, 255);
     overflow: hidden;
@@ -14,13 +22,34 @@ body {
 
 /* Header Styles */
 .header {
+    font-family: 'Changeling Neo Regular';
+    color: #FFF;
+    text-align: center;
+    font-size: 23.206px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 50;
-    text-align: center;
     padding: 1.5rem 0;
 }
+
+#presentstag {
+    font-family: 'Changeling Neo Light';
+    font-size: 17.443;
+    letter-spacing: 0.2em;
+    font-weight: 300;
+}
+
+#Yasya_content {
+    font-family: 'Changeling Neo Bold'; /* Add the font-face declaration here */
+    font-size: 106.67px;
+    letter-spacing: 0.2em;
+    font-weight: 300;
+}
+
 
 .header h1 {
     font-size: 1rem;
