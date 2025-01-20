@@ -1,0 +1,276 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: #0A0A1A;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+    z-index: 100;
+    color: white;
+    transition: color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header h1 {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+}
+
+header p {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+/* Split Container */
+.split-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Split Panels */
+.split {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Image Container */
+.image-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.7;
+    transition: transform 0.7s ease-in-out;
+}
+
+/* Left Panel (YASYA) */
+.left {
+    background: #0A0A1A;
+    color: white;
+}
+
+.left .image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(10,10,26,0.9), rgba(10,10,26,0.4));
+    z-index: 2;
+}
+
+/* Right Panel (YUKTHI) */
+.right {
+    background: white;
+    color: black;
+}
+
+.right .image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255,255,255,0.9), rgba(255,255,255,0.4));
+    z-index: 2;
+}
+
+/* Content Styles */
+.content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem;
+    z-index: 3;
+}
+
+h2 {
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+}
+
+.description {
+    max-width: 32rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.description p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+/* Visit Button */
+.visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: none;
+    color: inherit;
+    border: 1px solid currentColor;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.visit-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.right .visit-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.visit-btn:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Separator */
+.separator {
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    background: rgba(128, 128, 128, 0.2);
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dots Menu */
+.dots {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 3;
+}
+
+.dot {
+    width: 3px;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.3;
+    border-radius: 50%;
+}
+
+/* Hover States */
+.split:hover {
+    width: 60%;
+}
+
+.split:not(:hover) {
+    width: 40%;
+}
+
+.split:hover .background-image {
+    transform: scale(1.05);
+}
+
+.split:hover .description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.split:hover h2 {
+    transform: translateY(-10px);
+}
+
+/* Header Color Changes on Hover */
+.split.right:hover ~ header {
+    color: black;
+}
+
+.split.left:hover ~ header {
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    h2 {
+        font-size: 4rem;
+    }
+
+    .content {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 3rem;
+    }
+
+    .split-container {
+        flex-direction: column;
+    }
+
+    .split {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .split:hover {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .split:not(:hover) {
+        height: 40vh;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .dots {
+        display: none;
+    }
+}
