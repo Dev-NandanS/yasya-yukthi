@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #0A0A0A;
-    color: white;
+    color: rgb(255, 255, 255);
     overflow: hidden;
 }
 
@@ -55,14 +55,14 @@ body {
     position: relative;
     height: 100%;
     flex-shrink: 0;
-    transition: flex 1s ease, transform 1s ease-in-out; /* Slow down the transition */
+    transition: flex 1s ease, transform 1s ease-in-out;
 }
 
 /* Default Widths */
 .yasya-section,
 .yukthi-section {
     flex: 1; /* Take up equal space by default */
-    transition: flex 1s ease, transform 1s ease-in-out; /* Slowed down transition */
+    transition: flex 1s ease, transform 1s ease-in-out;
 }
 
 /* Hovering Effects */
@@ -107,11 +107,11 @@ body {
 }
 
 .yukthi-gradient {
-    background: linear-gradient(to right, #0A0A0A, transparent);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
 }
 
 .yasya-gradient {
-    background: linear-gradient(to left, #0A0A0A, transparent);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
 }
 
 /* Content Styles */
